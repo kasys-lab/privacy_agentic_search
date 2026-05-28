@@ -7,9 +7,9 @@ if not pt.started():
 
 
 def search_pyterrier(queries, collection, model, k=1000):
-    index_path = f"../../data/indexes/{collection}/pyterrier"
+    index_path = f"../../../data/indexes/{collection}/pyterrier"
     index = pt.IndexFactory.of(f"{index_path}/data.properties")
-    retriever = pt.BatchRetrieve(index, wmodel=model)
+    retriever = pt.BatchRetrieve(index, wmodel=model, num_results=k)
 
     out = retriever(queries)
     out["Q0"] = "Q0"
