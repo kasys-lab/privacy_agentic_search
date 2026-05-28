@@ -15,7 +15,7 @@ from glob import glob
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c", "--collection", default="robust04")
-parser.add_argument("-s", "--scrambler")
+#parser.add_argument("-s", "--scrambler")
 args = parser.parse_args()
 
 
@@ -53,5 +53,5 @@ perf = scrambled.loc[scrambled.scrambling.str.contains("Mechanism")][['scramblin
     index="scrambling", columns="epsilon", values="similarity")
 sota = scrambled.loc[~scrambled.scrambling.str.contains("Mechanism")][['scrambling', 'similarity']].groupby(["scrambling"], dropna=False).mean()
 
-print(perf.to_string())
-print(sota.to_string())
+print(perf.round(3).to_string())
+print(sota.round(3).to_string())
